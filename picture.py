@@ -6,7 +6,7 @@ from io import BytesIO
 def create_picture():
     profile_pic = Image.open('profile.jpg', 'r')
     resized = profile_pic.resize((200, 350), Image.ANTIALIAS)
-    resized.save('profile_resized.jpg', "JPEG", optimize=True)
+    resized.save('profile_resized.jpg', "BMP", optimize=True)
     img = Image.new('RGB', (1016, 648), color='white')
     writer = ImageDraw.Draw(img)
     writer.text((300, 200), "Jan", fill=(0, 0, 0))
@@ -22,7 +22,7 @@ def create_picture():
     img.paste(resized, (50, 200))
     img.save('test_img.png')
     buffered = BytesIO()
-    img.save(buffered, format="PNG")
+    img.save(buffered, format="BMP")
     img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
     string_file = open("base64.txt", 'w+')
     string_file.write(img_str)
