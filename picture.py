@@ -6,7 +6,7 @@ from io import BytesIO
 def create_picture():
     profile_pic = Image.open('profile.jpg', 'r')
     resized = profile_pic.resize((200, 350), Image.ANTIALIAS)
-    resized.save('profile_resized.jpg', "BMP", optimize=True)
+    resized.save('profile_resized.jpg', optimize=True)
     img = Image.new('RGB', (1016, 648), color='white')
     writer = ImageDraw.Draw(img)
     writer.text((300, 200), "Jan", fill=(0, 0, 0))
@@ -20,7 +20,7 @@ def create_picture():
                           "Szkola podstawowa nr 4 \n we Wroclawiu \n ul. Akacjowa 6 \n 52-200 Wroclaw",
                           fill=(0, 0, 0))
     img.paste(resized, (50, 200))
-    img.save('test_img.png')
+    img.save('test_img.bmp', "BMP")
     buffered = BytesIO()
     img.save(buffered, format="BMP")
     img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
